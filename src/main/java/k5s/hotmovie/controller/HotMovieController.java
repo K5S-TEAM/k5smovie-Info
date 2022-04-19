@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -26,16 +27,11 @@ public class HotMovieController {
         return "movies/moviePreviewList";
     }
 
-    @PostMapping("/movieInfo")
-    public String findedList(MovieCode movieCode, Model model){
-        HotMovie movie = new HotMovie();
-        movie.setCode(movieCode.getCode());
-
-
-        List<HotMovie> findedmovie = movieService.findOne(movie.getCode());
-        model.addAttribute("findedmovie",findedmovie);
+    @GetMapping("/movies/{movieCode}")
+    public String getMovie(@PathVariable("movieCode") Long movieCode, Model model) {
+        List<HotMovie> result = movieService.findOne(movieCode);
+        model.addAttribute("movies", result);
 
         return "movies/movieInfo";
     }
-
 }

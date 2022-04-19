@@ -64,7 +64,7 @@
     <h2>영화 정보</h2>
 </div>
 
-<div class="wrapper" th:each="movie : ${findedmovie}">
+<div class="wrapper" th:each="movie : ${movies}">
 
     <div class="mv_img">
         <img th:src="${movie.img_url}">
