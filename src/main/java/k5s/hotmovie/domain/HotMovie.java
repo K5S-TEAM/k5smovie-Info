@@ -4,8 +4,10 @@ public class HotMovie {
 
     private Long code;
     private String title;
-    private Double rating;
+    private Double score;
     private String genre;
+    private String nation;
+    private String rating;
     private String director;
     private String actor;
     private String story;
@@ -29,12 +31,12 @@ public class HotMovie {
         this.title = title;
     }
 
-    public Double getRating() {
-        return rating;
+    public Double getScore() {
+        return score;
     }
 
-    public void setRating(Double rating) {
-        this.rating = rating;
+    public void setScore(Double score) {
+        this.score = score;
     }
 
     public String getGenre() {
@@ -43,6 +45,22 @@ public class HotMovie {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public String getNation() {
+        return nation;
+    }
+
+    public void setNation(String nation) {
+        this.nation = nation;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 
     public String getDirector() {

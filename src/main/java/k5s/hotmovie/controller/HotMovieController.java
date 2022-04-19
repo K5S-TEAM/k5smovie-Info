@@ -31,7 +31,6 @@ public class HotMovieController {
         HotMovie movie = new HotMovie();
         movie.setCode(movieCode.getCode());
 
-
         List<HotMovie> findedmovie = movieService.findOne(movie.getCode());
         model.addAttribute("findedmovie",findedmovie);
 

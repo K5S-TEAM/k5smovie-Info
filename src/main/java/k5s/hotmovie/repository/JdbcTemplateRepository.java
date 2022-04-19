@@ -28,14 +28,16 @@ public class JdbcTemplateRepository implements MovieRepository{
             HotMovie movie = new HotMovie();
             movie.setCode(rs.getLong("code"));
             movie.setTitle(rs.getString("title"));
-            movie.setRating(rs.getDouble("rating"));
+            movie.setNation(rs.getString("nation"));
+            movie.setRating(rs.getString("rating"));
+            movie.setScore(rs.getDouble("score"));
             movie.setGenre(rs.getString("genre"));
             movie.setDirector(rs.getString("director"));
             movie.setActor(rs.getString("actor"));
             movie.setStory(rs.getString("story"));
             movie.setOpening_date(rs.getString("opening_date"));
             movie.setRunning_time(rs.getString("running_time"));
-            movie.setImg_url(rs.getString("img_url"));
+            movie.setImg_url(rs.getString("img"));
             return movie;
         };
     }
