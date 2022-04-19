@@ -13,7 +13,7 @@ public class HotMovie {
     private String story;
     private String opening_date;
     private String running_time;
-    private String img_url;
+    private String img;
 
     public Long getCode() {
         return code;
@@ -103,11 +103,11 @@ public class HotMovie {
         this.running_time = running_time;
     }
 
-    public String getImg_url() {
-        return img_url;
+    public String getImg() {
+        return img;
     }
 
-    public void setImg_url(String img_url) {
-        this.img_url = img_url;
+    public void setImg(String img) {
+        this.img = img;
     }
 }

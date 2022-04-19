@@ -37,7 +37,7 @@ public class JdbcTemplateRepository implements MovieRepository{
             movie.setStory(rs.getString("story"));
             movie.setOpening_date(rs.getString("opening_date"));
             movie.setRunning_time(rs.getString("running_time"));
-            movie.setImg_url(rs.getString("img"));
+            movie.setImg(rs.getString("img"));
             return movie;
         };
     }
