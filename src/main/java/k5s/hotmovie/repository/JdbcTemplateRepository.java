@@ -23,6 +23,12 @@ public class JdbcTemplateRepository implements MovieRepository{
         return jdbcTemplate.query("select * from mv_table", memberRowMapper());
     }
 
+    @Override
+    public List<HotMovie> findWithPage(int page) {
+        int row = 12 * (page - 1);
+        return jdbcTemplate.query("select * from mv_table LIMIT 12 OFFSET ?", memberRowMapper(), row);
+    }
+
     private RowMapper<HotMovie> memberRowMapper() {
         return (rs, rowNum) -> {
             HotMovie movie = new HotMovie();

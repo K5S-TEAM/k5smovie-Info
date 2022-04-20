@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -21,9 +22,14 @@ public class HotMovieController {
     }
 
     @GetMapping("/movies")
-    public String list(Model model){
-        List<HotMovie> movies = movieService.findMovies();
+    public String list(@RequestParam(required = false, defaultValue = "1") int page, Model model){
+        if (page < 1) {
+            page = 1;
+        }
+
+        List<HotMovie> movies = movieService.findWithPage(page);
         model.addAttribute("movies", movies);
+        model.addAttribute("page", page);
         return "movies/moviePreviewList";
     }
 
