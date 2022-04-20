@@ -4,14 +4,16 @@ public class HotMovie {
 
     private Long code;
     private String title;
-    private Double rating;
+    private Double score;
     private String genre;
+    private String nation;
+    private String rating;
     private String director;
     private String actor;
     private String story;
     private String opening_date;
     private String running_time;
-    private String img_url;
+    private String img;
 
     public Long getCode() {
         return code;
@@ -29,12 +31,12 @@ public class HotMovie {
         this.title = title;
     }
 
-    public Double getRating() {
-        return rating;
+    public Double getScore() {
+        return score;
     }
 
-    public void setRating(Double rating) {
-        this.rating = rating;
+    public void setScore(Double score) {
+        this.score = score;
     }
 
     public String getGenre() {
@@ -43,6 +45,22 @@ public class HotMovie {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public String getNation() {
+        return nation;
+    }
+
+    public void setNation(String nation) {
+        this.nation = nation;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 
     public String getDirector() {
@@ -85,11 +103,11 @@ public class HotMovie {
         this.running_time = running_time;
     }
 
-    public String getImg_url() {
-        return img_url;
+    public String getImg() {
+        return img;
     }
 
-    public void setImg_url(String img_url) {
-        this.img_url = img_url;
+    public void setImg(String img) {
+        this.img = img;
     }
 }

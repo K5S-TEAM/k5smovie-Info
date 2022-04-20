@@ -34,14 +34,6 @@
           grid-column: 1 / 12;
           grid-row: 5 / 8;
         }
-        .rivew1 {
-          grid-column: 1 / 6;
-          grid-row: 6 / 8;
-        }
-        .rivew2 {
-          grid-column: 7 / 12;
-          grid-row: 6 / 8;
-        }
 
       	.wrapper{
       	  border: solid 1px pink;
@@ -51,7 +43,7 @@
       	  text-align: center;
           border: solid 1px black;
       	}
-      	.story, .rivew, .rivew1, .rivew2{
+      	.story, .rivew{
       	  text-align: left;
           border: solid 1px black;
       	}
@@ -67,32 +59,29 @@
 <div class="wrapper" th:each="movie : ${movies}">
 
     <div class="mv_img">
-        <img th:src="${movie.img_url}">
+        <img th:src="${movie.img}">
     </div>
     <div class="mv_info">
         <h3 th:text="${movie.title}"></h3>
         감독 : <text th:text="${movie.director}"></text><br>
         배우 : <text th:text="${movie.actor}"></text><br>
         장르 : <text th:text="${movie.genre}"></text><br>
+        국가 : <text th:text="${movie.nation}"></text><br>
+        관람등급 : <text th:text="${movie.rating}"></text><br>
         개봉일 : <text th:text="${movie.opening_date}"></text><br>
         상영시간 : <text th:text="${movie.running_time}"></text>
     </div>
     <div class="rating">
         <h2> 평점 </h2>
-        <h2 th:text="${movie.rating}"></h2>
+        <h2 th:text="${movie.score}"></h2>
     </div>
     <div class="story"><h3><b>줄거리</b></h3>
         <text th:text="${movie.story}"></text>
     </div>
-    <div class="rivew">리뷰</div>
-    <div class="rivew1">
-        리뷰1<br>
-        <b>받아와야함</b>
+    <div class="rivew">
+        <button> 리뷰 리스트 </button>
     </div>
-    <div class="rivew2">
-        리뷰2<br>
-        <b>받아와야함</b>
-    </div>
+
 </div>
 
 </body>
