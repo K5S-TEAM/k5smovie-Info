@@ -13,38 +13,28 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/chat")
 public class ChatRoomController {
     private final ChatRoomRepository chatRoomRepository;
     private final MovieService movieService;
 
-//    // 채팅 리스트 화면
-//    @GetMapping("/room")
-//    public String rooms(Model model) {
-//        return "/chat/room";
-//    }
     // 모든 채팅방 목록 반환
-    @GetMapping("/rooms")
+    @GetMapping("/chat/rooms")
     @ResponseBody
     public List<ChatRoom> room() {
         return chatRoomRepository.findAllRoom();
     }
 
     // 채팅방 입장 화면
-    @GetMapping("/enter/{roomId}")
-//    public String roomDetail(Model model, @PathVariable String roomId, @RequestParam String roomName) {
+    @GetMapping("/movies/{roomId}/chat")
     public String roomDetail(Model model, @PathVariable Long roomId) {
-//        System.out.println("test");
-//        System.out.println(roomId);
+
         chatRoomRepository.createChatRoom(roomId);
         List<HotMovie> result = movieService.findOne(roomId);
         model.addAttribute("movies", result);
-
-//        model.addAttribute("roomName", roomName);
         return "chat/roomdetail";
     }
     // 특정 채팅방 조회
-    @GetMapping("/room/{roomId}")
+    @GetMapping("/chat/room/{roomId}")
     @ResponseBody
     public ChatRoom roomInfo(@PathVariable String roomId) {
         return chatRoomRepository.findRoomById(roomId);
