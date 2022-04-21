@@ -1,4 +1,4 @@
-package k5s.hotmovie;
+package k5s.hotmovie.config;
 
 import k5s.hotmovie.repository.*;
 import k5s.hotmovie.service.MovieService;
