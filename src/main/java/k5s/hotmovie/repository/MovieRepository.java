@@ -9,4 +9,5 @@ public interface MovieRepository {
     List<HotMovie> findByCode(Long code);
     //Optional<Movie> findByName(String name);
     List<HotMovie> findAll();
+    List<HotMovie> findWithPage(int page);
 }

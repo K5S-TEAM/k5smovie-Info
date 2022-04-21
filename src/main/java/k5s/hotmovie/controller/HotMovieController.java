@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -20,10 +20,22 @@ public class HotMovieController {
         this.movieService = movieService;
     }
 
+//    @GetMapping("/movies")
+//    public String list(Model model){
+//        List<HotMovie> movies = movieService.findMovies();
+//        model.addAttribute("movies", movies);
+//        return "movies/moviePreviewList";
+//    }
+
     @GetMapping("/movies")
-    public String list(Model model){
-        List<HotMovie> movies = movieService.findMovies();
+    public String list(@RequestParam(required = false, defaultValue = "1") int page, Model model){
+        if (page < 1) {
+            page = 1;
+        }
+
+        List<HotMovie> movies = movieService.findWithPage(page);
         model.addAttribute("movies", movies);
+        model.addAttribute("page", page);
         return "movies/moviePreviewList";
     }
 
@@ -35,15 +47,6 @@ public class HotMovieController {
         return "movies/movieInfo";
     }
 
-//    @PostMapping("/movieInfo")
-//    public String findedList(MovieCode movieCode, Model model){
-//        HotMovie movie = new HotMovie();
-//        movie.setCode(movieCode.getCode());
-//
-//        List<HotMovie> findedmovie = movieService.findOne(movie.getCode());
-//        model.addAttribute("findedmovie",findedmovie);
-//
-//        return "movies/movieInfo";
-//    }
+
 
 }

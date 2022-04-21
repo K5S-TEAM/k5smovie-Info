@@ -15,21 +15,7 @@ public class MovieService {
         this.movieRepository = movieRepository;
     }
     /**
-     * 회원가입
-     */
-//    public Long join(HotMovie movie) {
-//        validateDuplicateMovies(movie); //중복 영화 검증
-//        movieRepository.save(movie);
-//        return movie.getCode();
-//    }
-//    private void validateDuplicateMovies(HotMovie movie) {
-//        movieRepository.findByName(movie.getTitle())
-//                .ifPresent(m -> {
-//                    throw new IllegalStateException("이미 존재하는 회원입니다.");
-//                });
-//    }
-    /**
-     * 전체 회원 조회
+     * 영화 조회
      */
     public List<HotMovie> findMovies() {
         return movieRepository.findAll();
@@ -37,6 +23,14 @@ public class MovieService {
     public List<HotMovie> findOne(Long movieCode) {
         return movieRepository.findByCode(movieCode);
     }
+
+    /**
+     * 영화 페이징 쿼리
+     */
+    public List<HotMovie> findWithPage(int page){
+        return movieRepository.findWithPage(page);
+    }
+
 }
 
 
