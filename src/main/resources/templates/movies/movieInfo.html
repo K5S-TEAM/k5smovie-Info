@@ -30,20 +30,14 @@
           grid-column: 1 / 12;
           grid-row: 3 / 5;
         }
-        .rivew {
-          grid-column: 1 / 12;
-          grid-row: 5 / 8;
-        }
-
       	.wrapper{
       	  border: solid 1px pink;
       	}
-
       	.mv_img, .mv_info, .rating{
       	  text-align: center;
           border: solid 1px black;
       	}
-      	.story, .rivew{
+      	.story{
       	  text-align: left;
           border: solid 1px black;
       	}
@@ -87,6 +81,10 @@
             <div>
                 <button type="button" class="btn btn-secondary btn-lg fs-2 col-md-4"
                         th:onclick="'location.href=\'http://3.34.45.251/movies/'+${movie.code}+'/reviews\''">리뷰 조회하기</button>
+            </div>
+            <div>
+                <button type="button" class="btn btn-secondary btn-lg fs-2 col-md-4"
+                        th:onclick="'location.href=\'http://3.34.45.251/movies/'+${movie.code}+'/reviews\''">채팅창 입장</button>
             </div>
         </div>
     </div>
