@@ -52,45 +52,43 @@
     <h2>영화 정보</h2>
 </div>
 
-<div class="wrapper" th:each="movie : ${movies}">
-
-    <div class="mv_img">
-        <img th:src="${movie.img}">
-    </div>
-    <div class="mv_info">
-        <h3 th:text="${movie.title}"></h3>
-        감독 : <text th:text="${movie.director}"></text><br>
-        배우 : <text th:text="${movie.actor}"></text><br>
-        장르 : <text th:text="${movie.genre}"></text><br>
-        국가 : <text th:text="${movie.nation}"></text><br>
-        관람등급 : <text th:text="${movie.rating}"></text><br>
-        개봉일 : <text th:text="${movie.opening_date}"></text><br>
-        상영시간 : <text th:text="${movie.running_time}"></text>
-    </div>
-    <div class="rating">
-        <h2> 평점 </h2>
-        <h2 th:text="${movie.score}"></h2>
-    </div>
-    <div class="story"><h3><b>줄거리</b></h3>
-        <text th:text="${movie.story}"></text>
-    </div>
-
-    <div class="container mt-4 text-center">
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div>
-                <button type="button" class="btn btn-secondary btn-lg fs-2 col-md-4"
-                        th:onclick="'location.href=\'http://3.34.45.251/movies/'+${movie.code}+'/reviews\''">리뷰 조회하기</button>
-            </div>
-            <div>
-                <button type="button" class="btn btn-secondary btn-lg fs-2 col-md-4"
-                        th:onclick="'location.href=\'/movies/'+${movie.code}+'/chat\''">채팅창 입장</button>
-<!--                닉네임을 위 링크 쪽으로 보낼수 있는지...-->
-            </div>
+<div th:each="movie : ${movies}">
+    <div class="wrapper">
+        <div class="mv_img">
+            <img th:src="${movie.img}">
+        </div>
+        <div class="mv_info">
+            <h3 th:text="${movie.title}"></h3>
+            감독 : <text th:text="${movie.director}"></text><br>
+            배우 : <text th:text="${movie.actor}"></text><br>
+            장르 : <text th:text="${movie.genre}"></text><br>
+            국가 : <text th:text="${movie.nation}"></text><br>
+            관람등급 : <text th:text="${movie.rating}"></text><br>
+            개봉일 : <text th:text="${movie.opening_date}"></text><br>
+            상영시간 : <text th:text="${movie.running_time}"></text>
+        </div>
+        <div class="rating">
+            <h2> 평점 </h2>
+            <h2 th:text="${movie.score}"></h2>
+        </div>
+        <div class="story"><h3><b>줄거리</b></h3>
+            <text th:text="${movie.story}"></text>
         </div>
     </div>
 
+    <div class="container mt-4 text-center">
+        <div class="col">
+            <div>
+                <button type="button" class="btn btn-secondary btn-lg fs-2"
+                        th:onclick="'location.href=\'http://3.34.45.251/movies/'+${movie.code}+'/reviews\''">리뷰 조회하기</button>
+                <button type="button" class="btn btn-secondary btn-lg fs-2"
+                        th:onclick="'location.href=\'/movies/'+${movie.code}+'/chat\''">채팅창 입장</button>
+                <!--                닉네임을 위 링크 쪽으로 보낼수 있는지...-->
+            </div>
+        </div>
+    </div>
 </div>
+
 
 </body>
 </html>
