@@ -77,14 +77,17 @@
     </div>
 
     <div class="container mt-4 text-center">
-        <div class="col">
-            <div>
-                <button type="button" class="btn btn-secondary btn-lg fs-2"
-                        th:onclick="'location.href=\'http://3.34.45.251/movies/'+${movie.code}+'/reviews\''">리뷰 조회하기</button>
-                <button type="button" class="btn btn-secondary btn-lg fs-2"
-                        th:onclick="'location.href=\'/movies/'+${movie.code}+'/chat\''">채팅창 입장</button>
-                <!--                닉네임을 위 링크 쪽으로 보낼수 있는지...-->
-            </div>
+        <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+            <button type="button" class="btn btn-secondary btn-lg fs-2"
+                    th:onclick="'location.href=\'http://3.34.45.251/movies/'+${movie.code}+'/reviews\''">리뷰 조회하기</button>
+        </div>
+        <div class="col-md-4">
+            <button type="button" class="btn btn-secondary btn-lg fs-2 px-4"
+                    th:onclick="'location.href=\'/movies/'+${movie.code}+'/chat\''">채팅창 입장</button>
+            <!--                닉네임을 위 링크 쪽으로 보낼수 있는지...-->
+        </div>
         </div>
     </div>
 </div>

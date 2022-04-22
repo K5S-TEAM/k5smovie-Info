@@ -1,11 +1,15 @@
 package k5s.hotmovie.service;
 import k5s.hotmovie.domain.HotMovie;
+import k5s.hotmovie.dto.AuthenticationRequestDto;
+import k5s.hotmovie.dto.AuthenticationResponseDto;
+import k5s.hotmovie.error.InvalidAuthenticationException;
 import k5s.hotmovie.repository.MovieRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
-
-//@Service
-//@Transactional
 
 public class MovieService {
     private final MovieRepository movieRepository;

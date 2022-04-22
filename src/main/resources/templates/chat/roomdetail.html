@@ -44,7 +44,11 @@
 <script src="/webjars/axios/0.17.1/dist/axios.min.js"></script>
 <script src="/webjars/sockjs-client/1.1.2/sockjs.min.js"></script>
 <script src="/webjars/stomp-websocket/2.3.3-1/stomp.min.js"></script>
-<script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    let memberNickname = [[${memberNickname}]];
+    /*]]>*/
+
     // websocket & stomp initialize
         var sock = new SockJS("/ws-stomp");
         var ws = Stomp.over(sock);
@@ -60,7 +64,7 @@
             },
             mounted() {
                 this.roomId = this.$refs.getCode.textContent;
-                this.sender = 'anonymous';
+                this.sender = memberNickname;
                 this.findRoom();
             },
             methods: {
