@@ -21,6 +21,13 @@ public class HotMovieController {
         this.movieService = movieService;
     }
 
+//    @GetMapping("/movies")
+//    public String list(Model model){
+//        List<HotMovie> movies = movieService.findMovies();
+//        model.addAttribute("movies", movies);
+//        return "movies/moviePreviewList";
+//    }
+
     @GetMapping("/movies")
     public String list(@RequestParam(required = false, defaultValue = "1") int page, Model model){
         if (page < 1) {
