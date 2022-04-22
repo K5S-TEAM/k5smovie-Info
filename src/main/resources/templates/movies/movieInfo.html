@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>영화 상세 정보</title>
     <style>
 		.wrapper {
@@ -49,7 +50,7 @@
 <body>
 
 <div style="clear:both">
-    <h2>영화 정보</h2>
+    <h1>영화 정보</h1>
 </div>
 
 <div th:each="movie : ${movies}">
@@ -72,23 +73,23 @@
             <h2 th:text="${movie.score}"></h2>
         </div>
         <div class="story"><h3><b>줄거리</b></h3>
-            <text th:text="${movie.story}"></text>
+            <p th:text="${movie.story}"></p>
         </div>
     </div>
-
     <div class="container mt-4 text-center">
-        <div class="col">
-            <div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
                 <button type="button" class="btn btn-secondary btn-lg fs-2"
                         th:onclick="'location.href=\'http://3.34.45.251/movies/'+${movie.code}+'/reviews\''">리뷰 조회하기</button>
-                <button type="button" class="btn btn-secondary btn-lg fs-2"
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-secondary btn-lg fs-2 px-4"
                         th:onclick="'location.href=\'/movies/'+${movie.code}+'/chat\''">채팅창 입장</button>
-                <!--                닉네임을 위 링크 쪽으로 보낼수 있는지...-->
             </div>
         </div>
     </div>
 </div>
-
 
 </body>
 </html>
