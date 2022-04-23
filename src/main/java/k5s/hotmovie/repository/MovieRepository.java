@@ -10,4 +10,5 @@ public interface MovieRepository {
     //Optional<Movie> findByName(String name);
     List<HotMovie> findAll();
     List<HotMovie> findWithPage(int page);
+    void updateMovieScore(Long code, Double score);
 }

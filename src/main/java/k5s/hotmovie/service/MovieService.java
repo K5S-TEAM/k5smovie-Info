@@ -23,12 +23,17 @@ public class MovieService {
     public List<HotMovie> findOne(Long movieCode) {
         return movieRepository.findByCode(movieCode);
     }
-
     /**
      * 영화 페이징 쿼리
      */
     public List<HotMovie> findWithPage(int page){
         return movieRepository.findWithPage(page);
+    }
+    /**
+     * 평점 수정 쿼리
+     */
+    public void updateMovieScore(Long movieCode, Double score) {
+        movieRepository.updateMovieScore(movieCode, score);
     }
 
 }

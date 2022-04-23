@@ -29,6 +29,11 @@ public class JdbcTemplateRepository implements MovieRepository{
         return jdbcTemplate.query("select * from mv_table LIMIT 12 OFFSET ?", memberRowMapper(), row);
     }
 
+    @Override
+    public void updateMovieScore(Long code, Double score){
+        jdbcTemplate.update("update mv_table set score = ? where code = ?",score, code);
+    }
+
     private RowMapper<HotMovie> memberRowMapper() {
         return (rs, rowNum) -> {
             HotMovie movie = new HotMovie();
