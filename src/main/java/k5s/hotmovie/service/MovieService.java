@@ -34,6 +34,10 @@ public class MovieService {
     public List<HotMovie> findWithPage(int page){
         return movieRepository.findWithPage(page);
     }
+
+    public void updateMovieGrade(Long movieCode, double averageScore) {
+//        movieRepository.updateMovieGrade(movieCode, averageScore);
+    }
 }
 
 
