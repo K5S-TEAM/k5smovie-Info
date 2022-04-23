@@ -38,7 +38,7 @@ public class MovieApiController {
      * @return
      */
     @PatchMapping("/movies/{movieCode}")
-    public ResponseEntity updateGradeScore(@PathVariable("movieCode") Long movieCode
+    public ResponseEntity updateMovieScore(@PathVariable("movieCode") Long movieCode
             , @RequestBody ScoreUpdateRequestDto dto) {
         movieService.updateMovieScore(movieCode, dto.getAverageScore());
         return ResponseEntity.status(HttpStatus.OK).build();
