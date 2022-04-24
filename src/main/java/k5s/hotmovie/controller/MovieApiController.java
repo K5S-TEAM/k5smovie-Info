@@ -41,6 +41,6 @@ public class MovieApiController {
     public ResponseEntity updateMovieScore(@PathVariable("movieCode") Long movieCode
             , @RequestBody ScoreUpdateRequestDto dto) {
         movieService.updateMovieScore(movieCode, dto.getAverageScore());
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.status(HttpStatus.OK).body("ok");
     }
 }
