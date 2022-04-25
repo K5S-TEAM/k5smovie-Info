@@ -14,26 +14,29 @@
         }
     </style>
 </head>
-<body th:each="movie : ${movies}">
-<div>
-    <button th:onclick="'location.href=\'/movies/'+${movie.code}+'\''">돌아가기</button>
-</div>
+<body style="background-color:#2c2c2c" th:each="movie : ${movies}">
+<!--<div>-->
+<!--    <button th:onclick="'location.href=\'/movies/'+${movie.code}+'\''">돌아가기</button>-->
+<!--</div>-->
 <div class="container" id="app" v-cloak>
     <div>
         <h2 style="visibility:hidden;" ref="getCode" th:text=${movie.code}></h2>
-        <h2 ref="getTitle" th:text=${movie.title}></h2>
+        <br>
+        <h2 style="color:white;" ref="getTitle" th:text="${movie.title} + ' 채팅방'"></h2><br><br>
     </div>
     <div class="input-group">
-        <div class="input-group-prepend">
-            <label class="input-group-text">내용</label>
-        </div>
-        <input type="text" class="form-control" v-model="message" v-on:keypress.enter="sendMessage">
+<!--        <div class="input-group-prepend">-->
+<!--            <label class="input-group-text">내용</label>-->
+<!--        </div>-->
+        <input type="text" class="form-control" v-model="message" style="background-color:#BDBDBD; color:black; border-style: none; font-size:25px"
+               v-on:keypress.enter="sendMessage">
         <div class="input-group-append">
-            <button class="btn btn-primary" type="button" @click="sendMessage">보내기</button>
+            <button class="btn btn-primary" type="button" style="background-color:#848484; color:black; border-style: none; font-size:25px"
+                    @click="sendMessage">Send</button>
         </div>
     </div>
     <ul class="list-group">
-        <li class="list-group-item" v-for="message in messages">
+        <li class="list-group-item" v-for="message in messages" style="font-size:20px">
             {{message.sender}} : {{message.message}}
         </li>
     </ul>
