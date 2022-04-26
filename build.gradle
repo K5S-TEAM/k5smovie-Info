@@ -42,3 +42,10 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+jar {
+	enabled = false
+}
+bootJar{
+	archiveFileName = 'k5smovie-auth.jar'
+}
