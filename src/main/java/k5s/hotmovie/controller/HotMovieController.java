@@ -43,7 +43,6 @@ public class HotMovieController {
 
         System.out.println("무비스홈에서 토큰값 : " + accessToken);
 
-
         if (accessToken==null) {
             System.out.println("토큰없다~!~!~!~!~!~!");
             List<HotMovie> movies = movieService.findWithPage(page);
@@ -53,10 +52,12 @@ public class HotMovieController {
         }
         else {
             System.out.println("토큰있다~!~!~!~!~!~!");
-            AuthenticationResponseDto result = authService.requestAuthentication(accessToken);
+            AuthenticationResponseDto result = authService.requestAuthentication2(accessToken);
 
             Long memberId = result.getId();
             String memberName = result.getName();
+            System.out.println("아이디"+memberId);
+            System.out.println("이름"+memberName);
             if (memberName==null){
                 System.out.println("하지만 인증 끝난 토큰");
                 List<HotMovie> movies = movieService.findWithPage(page);
@@ -90,7 +91,7 @@ public class HotMovieController {
         }
         else {
             System.out.println("토큰있다~!~!~!~!~!~!");
-            AuthenticationResponseDto result = authService.requestAuthentication(accessToken);
+            AuthenticationResponseDto result = authService.requestAuthentication2(accessToken);
             String memberName = result.getName();
 
             List<HotMovie> movie = movieService.findOne(movieCode);

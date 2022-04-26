@@ -25,6 +25,7 @@ public class AuthService {
         log.info("reqeustAuthentication: " + accessToken);
 
         WebClient webClient = WebClient.builder().baseUrl(authServerUrl).build();
+
         AuthenticationResponseDto result = webClient.post()
                 .uri("/auth/access-token-valid")
                 .body(Mono.just(dto), AuthenticationRequestDto.class)
@@ -39,9 +40,27 @@ public class AuthService {
         return result;
     }
 
+    public AuthenticationResponseDto requestAuthentication2(String accessToken) {
+        AuthenticationRequestDto dto = new AuthenticationRequestDto(accessToken);
+
+        System.out.println("인증2에서 토큰" + accessToken);
+
+        WebClient webClient = WebClient.builder().baseUrl(authServerUrl).build();
+
+        AuthenticationResponseDto result = webClient.post()
+                .uri("/auth/access-token-valid")
+                .body(Mono.just(dto), AuthenticationRequestDto.class)
+                .retrieve()
+                .bodyToMono(AuthenticationResponseDto.class)
+                .block();
+
+        return result;
+    }
+
     @Transactional
     public String getMemberNickname(Long memberId) {
         WebClient webClient = WebClient.builder().baseUrl(memberConvenienceServerUrl).build();
+
         MemberNicknameResponseDto result = webClient.get()
                 .uri("/member/" + memberId + "/nickname")
                 .retrieve()
