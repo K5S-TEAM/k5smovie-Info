@@ -13,13 +13,13 @@ import reactor.core.publisher.Mono;
 
 @Slf4j
 @Service
-public class ChatService {
+public class AuthService {
 
     private final String authServerUrl = "http://13.209.76.94:8080";
     private final String memberConvenienceServerUrl = "http://54.180.106.16:8081";
 
     @Transactional
-    public Long requestAuthentication(String accessToken) {
+    public AuthenticationResponseDto requestAuthentication(String accessToken) {
         AuthenticationRequestDto dto = new AuthenticationRequestDto(accessToken);
 
         log.info("reqeustAuthentication: " + accessToken);
@@ -29,15 +29,14 @@ public class ChatService {
                 .uri("/auth/access-token-valid")
                 .body(Mono.just(dto), AuthenticationRequestDto.class)
                 .retrieve()
-                .onStatus(HttpStatus::is4xxClientError, error -> Mono.error(new InvalidAuthenticationException("인증 정보가 존재하지 않습니다.")))
+                .onStatus(HttpStatus::is4xxClientError, error -> Mono.error(new InvalidAuthenticationException("인증 정보가 존재하지 않습니다. 토큰 없음")))
                 .bodyToMono(AuthenticationResponseDto.class)
                 .block();
 
-        if (result.getId() == null) {
-            throw new InvalidAuthenticationException("인증 정보가 존재하지 않습니다.");
-        }
-
-        return result.getId();
+//        if (result.getId() == null) {
+//            throw new InvalidAuthenticationException("인증 정보가 존재하지 않습니다. ID 없음");
+//        }
+        return result;
     }
 
     @Transactional
@@ -51,5 +50,18 @@ public class ChatService {
                 .block();
 
         return result.getMemberNickname();
+    }
+    @Transactional
+    public void requestLogout(String accessToken) {
+        AuthenticationRequestDto dto = new AuthenticationRequestDto(accessToken);
+        WebClient webClient = WebClient.builder().baseUrl(authServerUrl).build();
+        webClient.post()
+                .uri("/auth/logout")
+                .body(Mono.just(dto), AuthenticationRequestDto.class)
+                .retrieve()
+                .onStatus(HttpStatus::is5xxServerError, error -> Mono.error(new InvalidAuthenticationException("인증 정보가 존재하지 않습니다.")))
+                .toBodilessEntity()
+                .block();
+        System.out.println("리퀘스트로그아웃 함수에서 토큰값 : " + accessToken);
     }
 }
