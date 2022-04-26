@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.util.function.Function;
+
 @Slf4j
 @Service
 public class AuthService {
@@ -22,7 +24,7 @@ public class AuthService {
     public AuthenticationResponseDto requestAuthentication(String accessToken) {
         AuthenticationRequestDto dto = new AuthenticationRequestDto(accessToken);
 
-        log.info("reqeustAuthentication: " + accessToken);
+//        log.info("reqeustAuthentication: " + accessToken);
 
         WebClient webClient = WebClient.builder().baseUrl(authServerUrl).build();
 
@@ -32,28 +34,8 @@ public class AuthService {
                 .retrieve()
                 .onStatus(HttpStatus::is4xxClientError, error -> Mono.error(new InvalidAuthenticationException("인증 정보가 존재하지 않습니다. 토큰 없음")))
                 .bodyToMono(AuthenticationResponseDto.class)
+                .onErrorReturn(new AuthenticationResponseDto(null,null))
                 .block();
-
-//        if (result.getId() == null) {
-//            throw new InvalidAuthenticationException("인증 정보가 존재하지 않습니다. ID 없음");
-//        }
-        return result;
-    }
-
-    public AuthenticationResponseDto requestAuthentication2(String accessToken) {
-        AuthenticationRequestDto dto = new AuthenticationRequestDto(accessToken);
-
-        System.out.println("인증2에서 토큰" + accessToken);
-
-        WebClient webClient = WebClient.builder().baseUrl(authServerUrl).build();
-
-        AuthenticationResponseDto result = webClient.post()
-                .uri("/auth/access-token-valid")
-                .body(Mono.just(dto), AuthenticationRequestDto.class)
-                .retrieve()
-                .bodyToMono(AuthenticationResponseDto.class)
-                .block();
-
         return result;
     }
 
@@ -81,6 +63,6 @@ public class AuthService {
                 .onStatus(HttpStatus::is5xxServerError, error -> Mono.error(new InvalidAuthenticationException("인증 정보가 존재하지 않습니다.")))
                 .toBodilessEntity()
                 .block();
-        System.out.println("리퀘스트로그아웃 함수에서 토큰값 : " + accessToken);
+//        System.out.println("리퀘스트로그아웃 함수에서 토큰값 : " + accessToken);
     }
 }
