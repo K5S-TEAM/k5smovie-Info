@@ -47,5 +47,5 @@ jar {
 	enabled = false
 }
 bootJar{
-	archiveFileName = 'k5smovie-auth.jar'
+	archiveFileName = 'k5smovie-movie-chat.jar'
 }
