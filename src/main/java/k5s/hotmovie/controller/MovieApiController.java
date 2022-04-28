@@ -45,7 +45,7 @@ public class MovieApiController {
         return ResponseEntity.status(HttpStatus.OK).body("ok");
     }
 
-    @PostMapping("/movies/search")
+    @PostMapping("/movies")
     public ResponseEntity getMovieList() {
         List<HotMovie> result = movieService.findMovieList();
 
