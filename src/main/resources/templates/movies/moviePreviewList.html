@@ -75,7 +75,7 @@
         </ul>
     </nav>
 
-        <h1>Movie list</h1>
+        <h1 style="padding-top: 7rem;">Movie list</h1>
         <div class = "movie_wrap">
             <div class = "movie" th:each="movie : ${movies}">
                 <div th:onclick="'location.href=\'/movies/'+${movie.code}+'\''">
