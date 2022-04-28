@@ -85,7 +85,7 @@
             <label class="nav-link text-light fw-bold" th:text="${memberName}+' 님'"></label>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-light font-weight-bold" href="http://3.34.45.251/member/my-page">My Page</a>
+            <a class="nav-link text-light font-weight-bold" href="k5smovie-auth-svc.default.svc.cluster.local/member/my-page">My Page</a>
         </li>
         <li class="nav-item pe-auto">
             <a class="nav-link active" aria-current="page" onclick="requestLogout()" th:href="'/movies/'+${movieCode}">Logout</a>
@@ -93,7 +93,7 @@
     </ul>
     <ul th:unless="${memberName != null}" class="nav justify-content-end ms-auto">
         <li class="nav-item pe-auto">
-            <a class="nav-link active" aria-current="page" href="http://3.34.45.251/auth/login">Login</a>
+            <a class="nav-link active" aria-current="page" href="k5smovie-auth-svc.default.svc.cluster.local/auth/login">Login</a>
         </li>
     </ul>
 </nav>
@@ -125,7 +125,7 @@
                 <text style="font-size: 30px;" th:text="${movie.score}"></text>
                 <text style="font-size: 30px; color:red;">♡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
                 <button type="button" class="btn btn-secondary btn-lg" style="float: right;"
-                        th:onclick="'location.href=\'http://3.34.45.251/movies/'+${movie.code}+'/reviews\''">리뷰 자세히보기</button><br>
+                        th:onclick="'location.href=\'k5smovie-review-svc.default.svc.cluster.local/movies/'+${movie.code}+'/reviews\''">리뷰 자세히보기</button><br>
                 <hr style="color:white; size:3px">
             </div>
         </div>

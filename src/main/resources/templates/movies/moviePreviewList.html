@@ -62,7 +62,7 @@
                 <label class="nav-link text-light fw-bold" th:text="${memberName}+' 님'"></label>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-light font-weight-bold" href="http://3.34.45.251/member/my-page">My Page</a>
+                <a class="nav-link text-light font-weight-bold" href="k5smovie-auth-svc.default.svc.cluster.local/member/my-page">My Page</a>
             </li>
             <li class="nav-item pe-auto">
                 <a class="nav-link active" aria-current="page" onclick="requestLogout()" href="/movies">Logout</a>
@@ -70,7 +70,7 @@
         </ul>
         <ul th:unless="${memberName != null}" class="nav justify-content-end ms-auto">
             <li class="nav-item pe-auto">
-                <a class="nav-link active" aria-current="page" href="http://3.34.45.251/auth/login">Login</a>
+                <a class="nav-link active" aria-current="page" href="k5smovie-auth-svc.default.svc.cluster.local/auth/login">Login</a>
             </li>
         </ul>
     </nav>

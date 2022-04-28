@@ -21,9 +21,6 @@ public class ChatRoomController {
     private final MovieService movieService;
     private final AuthService authService;
 
-//    @Value("${msa.auth}")
-//    String authServerUrl;
-
     // 모든 채팅방 목록 반환
     @GetMapping("/chat/rooms")
     @ResponseBody
@@ -62,6 +59,6 @@ public class ChatRoomController {
 
     @ExceptionHandler
     public String invalidAuthenticationExceptionHandler(InvalidAuthenticationException e) {
-        return "redirect:" + "http://3.34.45.251" + "/auth/login";
+        return "redirect:" + "k5smovie-auth-svc.default.svc.cluster.local" + "/auth/login";
     }
 }

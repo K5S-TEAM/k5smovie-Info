@@ -46,6 +46,7 @@ tasks.named('test') {
 jar {
 	enabled = false
 }
+
 bootJar{
 	archiveFileName = 'k5smovie-movie-chat.jar'
 }
