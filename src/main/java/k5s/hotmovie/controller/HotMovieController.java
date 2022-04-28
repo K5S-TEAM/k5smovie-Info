@@ -25,6 +25,33 @@ public class HotMovieController {
         this.authService = authService;
     }
 
+    @GetMapping("/")
+    public String home(Model model, @CookieValue(value = "accessToken", required = false) String accessToken) {
+        if (accessToken==null) {
+
+            List<HotMovie> movies = movieService.findRecentUpdate();
+            model.addAttribute("movies", movies);
+            model.addAttribute("memberName", null);
+        }
+        else {
+            AuthenticationResponseDto result = authService.requestAuthentication(accessToken);
+            Long memberId = result.getId();
+            String memberName = result.getName();
+
+            if (memberName==null){
+                List<HotMovie> movies = movieService.findRecentUpdate();
+                model.addAttribute("movies", movies);
+                model.addAttribute("memberName", null);
+            }
+            else{
+                List<HotMovie> movies = movieService.findRecentUpdate();
+                model.addAttribute("movies", movies);
+                model.addAttribute("memberName", memberName);
+            }
+        }
+        return "movies/movieToday";
+    }
+
     @GetMapping("/movies")
     public String list(@RequestParam(required = false, defaultValue = "1") int page, Model model
             , @CookieValue(value = "accessToken", required = false) String accessToken) {

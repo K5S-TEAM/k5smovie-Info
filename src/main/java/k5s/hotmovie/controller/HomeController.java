@@ -6,9 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-    @GetMapping("/")
-    public String home(){
-        return "redirect:" + "https://k5smovie.ga" + "/movies";
-    }
+//    @GetMapping("/")
+//    public String home(){
+////        return "redirect:" + "https://k5smovie.ga" + "/movies";
+//        return "movies/movietoday";
+//    }
 
 }

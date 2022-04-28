@@ -35,7 +35,10 @@ public class MovieService {
     public void updateMovieScore(Long movieCode, Double score) {
         movieRepository.updateMovieScore(movieCode, score);
     }
-
+    /**
+     * 최신 영화 조회
+     */
+    public List<HotMovie> findRecentUpdate() {return movieRepository.findRecentUpdate(); }
 }
 
 
