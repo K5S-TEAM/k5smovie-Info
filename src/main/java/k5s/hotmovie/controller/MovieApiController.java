@@ -1,5 +1,7 @@
 package k5s.hotmovie.controller;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import k5s.hotmovie.domain.HotMovie;
 import k5s.hotmovie.dto.MovieNameRequestDto;
 import k5s.hotmovie.dto.MovieNameResponseDto;
@@ -9,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -43,4 +44,20 @@ public class MovieApiController {
         movieService.updateMovieScore(movieCode, dto.getAverageScore());
         return ResponseEntity.status(HttpStatus.OK).body("ok");
     }
+    
+    @PostMapping("/movies/search")
+    public String getMovieList() {
+        List<HotMovie> result = movieService.findMovieList();
+
+        JsonArray movieList = new JsonArray();
+        for(int i=0; i<result.size(); i++) {
+            JsonObject jObj = new JsonObject();
+            jObj.addProperty("title", result.get(i).getTitle());
+            jObj.addProperty("code", result.get(i).getCode());
+            movieList.add(jObj);
+        }
+
+        return movieList.toString();
+    }
+}
 }

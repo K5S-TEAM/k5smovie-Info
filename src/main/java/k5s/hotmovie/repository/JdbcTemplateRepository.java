@@ -19,8 +19,8 @@ public class JdbcTemplateRepository implements MovieRepository{
         return jdbcTemplate.query("select * from mv_table where code = ?", memberRowMapper(), code);
     }
     @Override
-    public List<HotMovie> findAll() {
-        return jdbcTemplate.query("select * from mv_table", memberRowMapper());
+    public List<HotMovie> findMovieList() {
+        return jdbcTemplate.query("select title, code from mv_table", memberRowMapper());
     }
 
     @Override

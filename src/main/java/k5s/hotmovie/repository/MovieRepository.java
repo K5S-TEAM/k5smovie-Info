@@ -8,7 +8,7 @@ public interface MovieRepository {
     //Movie save(HotMovie movie);
     List<HotMovie> findByCode(Long code);
     //Optional<Movie> findByName(String name);
-    List<HotMovie> findAll();
+    List<HotMovie> findMovieList();
     List<HotMovie> findRecentUpdate();
     List<HotMovie> findWithPage(int page);
     void updateMovieScore(Long code, Double score);
