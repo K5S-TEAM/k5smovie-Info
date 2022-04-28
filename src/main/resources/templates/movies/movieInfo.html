@@ -24,7 +24,6 @@
         }
         button{
           font-family: Georgia, "Malgun Gothic", serif !important;
-          float: right !important;
           background-color: #000000 !important;
           border:1px solid #6c757d !important;
           color: #8398ab !important;
@@ -113,7 +112,7 @@
 </nav>
 
 <div style="clear:both">
-    <h1>Movie Information</h1><br>
+    <h1>Movie Information</h1>
 </div>
 
 <div th:each="movie : ${movies}" style="border-top: solid 0.1rem #ffff; padding-top: 20px;">
@@ -138,7 +137,7 @@
                 <h2> 리뷰 평균 점수 </h2><br>
                 <text style="font-size: 30px;" th:text="${#numbers.formatDecimal(movie.score,1,1)}"></text>
                 <text style="font-size: 30px; color:#c10013;">♥&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
-                <button type="button" class="btn btn-secondary btn-lg"
+                <button type="button" class="btn btn-secondary btn-lg" style="float: right;"
                         th:onclick="'location.href=\'https://k5smovie.ga/movies/'+${movie.code}+'/reviews\''">리뷰 보기</button><br>
                 <hr style="color:white; size:3px">
             </div>
@@ -151,9 +150,11 @@
             </div>
         </div>
     </div>
-    <div class="container mt-4 text-center">
+    <div class="container mt-4 text-center" style="margin-bottom: 1.5rem">
         <div class="row">
             <div class="col-md-12">
+                <img src = "https://hotmovie.s3.ap-northeast-2.amazonaws.com/img/chat-icon.png"
+                     th:onclick="'location.href=\'/movies/'+${movie.code}+'/chat\''" style="width:80px; height:60px">
                 <button type="button" class="btn btn-secondary btn-lg fs-2 px-4"
                         th:onclick="'location.href=\'/movies/'+${movie.code}+'/chat\''">채팅방 입장</button>
             </div>
