@@ -129,7 +129,7 @@
             <li class="slideitem" th:each="movie : ${movies}">
                 <a style="display:block;position:relative;">
                     <div class="textbox">
-                        <p style="margin-bottom: 0;" th:text="${movie.score}"></p>
+                        <p style="margin-bottom: 0;" th:text="${#numbers.formatDecimal(${movie.score},2,1)}"></p>
                     </div>
                     <div class="textbox2">
                         <p style="color:red; margin-bottom: 0;">&nbsp;♡</p>
