@@ -38,5 +38,6 @@ out/
 
 ###Config File###
 /src/main/resources/*.properties
-/src/main/resources/*.properties.bak*
+/src/main/resources/*.properties.bak
+/src/main/resources/*.properties.bak2
 

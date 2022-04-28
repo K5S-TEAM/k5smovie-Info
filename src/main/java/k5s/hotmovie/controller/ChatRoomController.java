@@ -59,6 +59,6 @@ public class ChatRoomController {
 
     @ExceptionHandler
     public String invalidAuthenticationExceptionHandler(InvalidAuthenticationException e) {
-        return "redirect:" + "k5smovie-auth-svc.default.svc.cluster.local" + "/auth/login";
+        return "redirect:" + "https://k5smovie.ga" + "/auth/login";
     }
 }
