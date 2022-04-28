@@ -16,10 +16,10 @@
 </head>
 <body style="background-color:#2c2c2c" th:each="movie : ${movies}">
 
-<nav class="navbar navbar-expand-md navbar-light bg-dark" style="position:sticky; top:0px;">
+<nav class="navbar navbar-expand-md navbar-light bg-dark" style="position:sticky; top:0px; z-index:1;">
 
-    <a>
-        <ul class="navbar-nav" style="align-items: center; width: fit-content;" onclick="location.href='/';">
+    <a  href="https://k5smovie.ga/" style="text-decoration: none;">
+        <ul class="navbar-nav" style="align-items: center;">
             <img src="https://k5s-member-convenience.s3.ap-northeast-2.amazonaws.com/common/k5s-icon.png" width="70" height="70" style="border: 0;" class="mx-2">
             <label class="text-light fw-bold me-3" style="font-size: 2rem;">k5sMovie</label>
         </ul>
