@@ -25,9 +25,9 @@
 	.section .slidelist > li > a img {width:100%;}
 	.section .slidelist label {position:absolute;z-index:10;top:50%;transform:translateY(-50%);padding:50px;cursor:pointer;}
 	.section .slidelist .textbox {position:absolute;z-index:1;top:90%;left:80%;transform:translate(-50%,-50%);line-height:1.6;text-align:center;}
-	.section .slidelist .textbox pre {font-size:45px;color:#fff;;transform:translateY(30px);transition:all .5s;}
+	.section .slidelist .textbox p {font-size:45px;color:#fff;;transform:translateY(40px);transition:all .5s;}
 	.section .slidelist .textbox2 {position:absolute;z-index:1;top:90%;left:93%;transform:translate(-50%,-50%);line-height:1.6;text-align:center;}
-	.section .slidelist .textbox2 pre {font-size:45px;color:#fff;;transform:translateY(30px);transition:all .5s;}
+	.section .slidelist .textbox2 p {font-size:45px;color:#fff;;transform:translateY(40px);transition:all .5s;}
 <!--	.section .slidelist .textbox h3 {font-size:36px;color:#fff;;transform:translateY(30px);transition:all .5s;}-->
 <!--	.section .slidelist .textbox p {font-size:45px;color:#fff;opacity:0;transform:translateY(30px);transition:all .5s;}-->
 
@@ -39,17 +39,17 @@
 	.section input[id="slide05"]:checked ~ .slidewrap .slidelist > li {transform:translateX(-400%);}
 
 	/* input에 체크되면 텍스트 효과 */
-	.section input[id="slide01"]:checked ~ .slidewrap li:nth-child(1) .textbox pre {opacity:1;transform:translateY(0);transition-delay:.5s;}
-	.section input[id="slide02"]:checked ~ .slidewrap li:nth-child(2) .textbox pre {opacity:1;transform:translateY(0);transition-delay:.5s;}
-	.section input[id="slide03"]:checked ~ .slidewrap li:nth-child(3) .textbox pre {opacity:1;transform:translateY(0);transition-delay:.5s;}
-	.section input[id="slide04"]:checked ~ .slidewrap li:nth-child(4) .textbox pre {opacity:1;transform:translateY(0);transition-delay:.5s;}
-	.section input[id="slide05"]:checked ~ .slidewrap li:nth-child(5) .textbox pre {opacity:1;transform:translateY(0);transition-delay:.5s;}
+	.section input[id="slide01"]:checked ~ .slidewrap li:nth-child(1) .textbox p {opacity:1;transform:translateY(0);transition-delay:.5s;}
+	.section input[id="slide02"]:checked ~ .slidewrap li:nth-child(2) .textbox p {opacity:1;transform:translateY(0);transition-delay:.5s;}
+	.section input[id="slide03"]:checked ~ .slidewrap li:nth-child(3) .textbox p {opacity:1;transform:translateY(0);transition-delay:.5s;}
+	.section input[id="slide04"]:checked ~ .slidewrap li:nth-child(4) .textbox p {opacity:1;transform:translateY(0);transition-delay:.5s;}
+	.section input[id="slide05"]:checked ~ .slidewrap li:nth-child(5) .textbox p {opacity:1;transform:translateY(0);transition-delay:.5s;}
 
-	.section input[id="slide01"]:checked ~ .slidewrap li:nth-child(1) .textbox2 pre {opacity:1;transform:translateY(0);transition-delay:.5s;}
-	.section input[id="slide02"]:checked ~ .slidewrap li:nth-child(2) .textbox2 pre {opacity:1;transform:translateY(0);transition-delay:.5s;}
-	.section input[id="slide03"]:checked ~ .slidewrap li:nth-child(3) .textbox2 pre {opacity:1;transform:translateY(0);transition-delay:.5s;}
-	.section input[id="slide04"]:checked ~ .slidewrap li:nth-child(4) .textbox2 pre {opacity:1;transform:translateY(0);transition-delay:.5s;}
-	.section input[id="slide05"]:checked ~ .slidewrap li:nth-child(5) .textbox2 pre {opacity:1;transform:translateY(0);transition-delay:.5s;}
+	.section input[id="slide01"]:checked ~ .slidewrap li:nth-child(1) .textbox2 p {opacity:1;transform:translateY(0);transition-delay:.5s;}
+	.section input[id="slide02"]:checked ~ .slidewrap li:nth-child(2) .textbox2 p {opacity:1;transform:translateY(0);transition-delay:.5s;}
+	.section input[id="slide03"]:checked ~ .slidewrap li:nth-child(3) .textbox2 p {opacity:1;transform:translateY(0);transition-delay:.5s;}
+	.section input[id="slide04"]:checked ~ .slidewrap li:nth-child(4) .textbox2 p {opacity:1;transform:translateY(0);transition-delay:.5s;}
+	.section input[id="slide05"]:checked ~ .slidewrap li:nth-child(5) .textbox2 p {opacity:1;transform:translateY(0);transition-delay:.5s;}
 
 <!--	.section input[id="slide01"]:checked ~ .slidewrap li:nth-child(1) .textbox h3 {opacity:1;transform:translateY(0);transition-delay:.2s;}-->
 <!--	.section input[id="slide01"]:checked ~ .slidewrap li:nth-child(1) .textbox p {opacity:1;transform:translateY(0);transition-delay:.4s;}-->
@@ -129,10 +129,10 @@
             <li class="slideitem" th:each="movie : ${movies}">
                 <a style="display:block;position:relative;">
                     <div class="textbox">
-                        <pre th:text="${movie.score}"></pre>
+                        <p th:text="${movie.score}"></p>
                     </div>
                     <div class="textbox2">
-                        <pre style="color:red;">&nbsp;♡</pre>
+                        <p style="color:red;">&nbsp;♡</p>
                     </div>
                     <img th:onclick="'location.href=\'/movies/'+${movie.code}+'\''" th:src=${movie.img} >
                 </a>
