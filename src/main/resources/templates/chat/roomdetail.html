@@ -53,20 +53,20 @@
     </ul>
 </nav>
 
-<div class="container" id="app" v-cloak>
+<div class="container" id="app" v-cloak style="font-family: Georgia, 'Malgun Gothic', serif;">
     <div>
         <h2 style="visibility:hidden;" ref="getCode" th:text=${movie.code}></h2>
         <br>
         <h2 style="color:white;" ref="getTitle" th:text="${movie.title} + ' 채팅방'"></h2><br><br>
     </div>
-    <div class="input-group">
+    <div class="input-group" style="border-radius: 4px;">
 <!--        <div class="input-group-prepend">-->
 <!--            <label class="input-group-text">내용</label>-->
 <!--        </div>-->
         <input type="text" class="form-control" v-model="message" style="background-color:#BDBDBD; color:black; border-style: none; font-size:25px"
                v-on:keypress.enter="sendMessage">
-        <div class="input-group-append">
-            <button class="btn btn-primary" type="button" style="background-color:#848484; color:black; border-style: none; font-size:25px"
+        <div class="input-group-append" style="border-radius: 4px;">
+            <button class="btn btn-primary" type="button" style="background-color:#848484; color:#272a76; border-style: none; font-size:25px"
                     @click="sendMessage">Send</button>
         </div>
     </div>
