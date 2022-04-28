@@ -18,6 +18,9 @@ public class MovieService {
      * 영화 조회
      */
     public List<HotMovie> findMovieList() {
+        return movieRepository.findMovieList();
+    }
+    public List<HotMovie> findAll() {
         return movieRepository.findAll();
     }
     public List<HotMovie> findOne(Long movieCode) {

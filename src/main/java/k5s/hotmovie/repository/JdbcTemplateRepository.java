@@ -24,6 +24,11 @@ public class JdbcTemplateRepository implements MovieRepository{
     }
 
     @Override
+    public List<HotMovie> findAll() {
+        return jdbcTemplate.query("select * from mv_table", memberRowMapper());
+    }
+
+    @Override
     public List<HotMovie> findRecentUpdate() {
         return jdbcTemplate.query("select * from mv_table ORDER BY code DESC LIMIT 5", memberRowMapper());
     }
