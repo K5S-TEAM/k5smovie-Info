@@ -127,7 +127,7 @@ border-left: solid 0.1rem #fff;">Login</a>
         </div>
         <div class = "movie_info">
             <p th:text=${movie.title}></p>
-            <pre th:text=${#string.substringBefore(movie.genre,',')}></pre>
+            <pre th:text=${#strings.substringBefore(movie.genre,',')}></pre>
             <text th:text=${#numbers.formatDecimal(movie.score,1,1)}></text>
             <text style="font-family: Georgia, 'Malgun Gothic', serif; font-size: 15px; font-weight: 600; color:#c10013;">♥</text>
         </div>
