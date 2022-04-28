@@ -44,7 +44,7 @@ public class MovieApiController {
         movieService.updateMovieScore(movieCode, dto.getAverageScore());
         return ResponseEntity.status(HttpStatus.OK).body("ok");
     }
-    
+
     @PostMapping("/movies/search")
     public String getMovieList() {
         List<HotMovie> result = movieService.findMovieList();
@@ -60,4 +60,4 @@ public class MovieApiController {
         return movieList.toString();
     }
 }
-}
+
