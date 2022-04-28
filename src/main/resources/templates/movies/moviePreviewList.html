@@ -46,12 +46,14 @@
           font-size: 22px;
           font-weight: 600;
           color: #ffffff;
+          margin-bottom: 0rem;
         }
         .movie_info pre {
           font-family: Georgia, "Malgun Gothic", serif;
           font-size: 17px;
           font-weight: 600;
           color: #dae1edd9;
+          margin-bottom: 0rem;
         }
 
         .movie:hover{
@@ -59,21 +61,21 @@
         }
 
         .page-item.active .page-link {
-            z-index: 3;
-            color: #0d6efd;
-            background-color: #000000;
-            font-size: 1.7rem;
-            border-color: #ffffff;
+            z-index: 3 !important;
+            color: #0d6efd !important;
+            background-color: #000000 !important;
+            font-size: 1.7rem !important;
+            border-color: #ffffff !important;
         }
 
         .page-link {
-            position: relative;
-            display: block;
-            color: #0d6efd;
-            text-decoration: none;
-            background-color: #000000;
-            border: 1px solid #dee2e6;
-            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            position: relative !important;
+            display: block !important;
+            color: #0d6efd !important;
+            text-decoration: none !important;
+            background-color: #000000 !important;
+            border: 1px solid #dee2e6 !important;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out !important;
         }
 
     </style>
@@ -119,7 +121,7 @@ border-left: solid 0.1rem #fff;">Login</a>
     </ul>
 </nav>
 
-<h1>Movie list</h1>
+<h1 style="margin-top: 1.2rem; margin-bottom: 1rem; font-weight: 600;">Movie list</h1>
 <div class = "movie_wrap">
     <div class = "movie" th:each="movie : ${movies}">
         <div th:onclick="'location.href=\'/movies/'+${movie.code}+'\''">
@@ -127,7 +129,8 @@ border-left: solid 0.1rem #fff;">Login</a>
         </div>
         <div class = "movie_info">
             <p th:text=${movie.title}></p>
-            <pre th:text=${#strings.substringBefore(movie.genre,',')}></pre>
+            <pre th:if = "${#strings.contains(movie.genre,',')}"th:text=${#strings.substringBefore(movie.genre,',')}></pre>
+            <pre th:unless = "${#strings.contains(movie.genre,',')}"th:text=${movie.genre}></pre>
             <text th:text=${#numbers.formatDecimal(movie.score,1,1)}></text>
             <text style="font-family: Georgia, 'Malgun Gothic', serif; font-size: 15px; font-weight: 600; color:#c10013;">♥</text>
         </div>
@@ -138,7 +141,7 @@ border-left: solid 0.1rem #fff;">Login</a>
     <div class="position-relative mt-5">
         <div class="position-absolute top-100 start-50 translate-middle">
             <nav aria-label="...">
-                <ul class="pagination">
+                <ul class="pagination" style="align-items: center;">
                     <li class="page-item">
                         <a class="page-link" th:href="@{/movies(page=1)}">&laquo;</a>
                     </li>
