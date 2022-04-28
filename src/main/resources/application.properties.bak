@@ -1,4 +1,0 @@
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-spring.datasource.url=jdbc:mysql://k5s-rds-movie.cuxeaywhwt9d.ap-northeast-2.rds.amazonaws.com:3306/k5smovie?serverTimezone=UTC&characterEncoding=UTF-8
-spring.datasource.username=k5s_rds_admin
-spring.datasource.password=k5s_rds_passwd
