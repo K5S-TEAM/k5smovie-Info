@@ -8,11 +8,13 @@ import k5s.hotmovie.dto.MovieNameResponseDto;
 import k5s.hotmovie.dto.ScoreUpdateRequestDto;
 import k5s.hotmovie.service.MovieService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class MovieApiController {
@@ -45,7 +47,7 @@ public class MovieApiController {
         return ResponseEntity.status(HttpStatus.OK).body("ok");
     }
 
-    @PostMapping("/movies")
+    @PostMapping("/search")
     public ResponseEntity getMovieList() {
         List<HotMovie> result = movieService.findMovieList();
 
@@ -56,6 +58,7 @@ public class MovieApiController {
             jObj.addProperty("code", result.get(i).getCode());
             movieList.add(jObj);
         }
+        log.info(movieList.toString());
         return ResponseEntity.status(HttpStatus.OK).body(movieList.toString());
     }
 }
