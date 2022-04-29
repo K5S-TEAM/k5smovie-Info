@@ -85,8 +85,13 @@
             transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out !important;
         }
 
-        .ui-autocomplete {
-            z-index:2147483647;
+        .search_button{
+            padding: 0 !important;
+            background-color: #888F !important;
+            width: 30px !important;
+            height: 30px !important;
+            border-radius: 7px !important;
+            border-width: 0 !important;
         }
 
         .autocomplete {
@@ -119,10 +124,9 @@
         .autocomplete-active {
            background-color: DodgerBlue !important;
             color: #ffffff;
-
+        }
     </style>
     <!-- CSS only -->
-<!--    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 
@@ -143,16 +147,15 @@
     </ul>
 
     <ul class="navbar-nav">
-        <div class="srch_form autocomplete" style="width: 250px;">
-<!--            <label for="tags">Tags: </label>-->
+        <div class="srch_form autocomplete" style="width: 300px;">
             <input id="autoInput" placeholder="Search..." style="border-radius: 7px; width: inherit; display: none;">
         </div>
 
-        <button id="search" style="padding: 0; background-color: #888F; width: 30px; height: 30px; border-radius: 7px; border-width: 0;">
+        <button class="search_button" id="search">
             <img src="https://hotmovie.s3.ap-northeast-2.amazonaws.com/img/search-icon.png" style="width:25px; height:25px ">
         </button>
-
     </ul>
+
     <ul th:if="${memberName != null}" class="nav justify-content-end ms-auto">
         <li class="nav-item">
             <label class="nav-link text-light fw-bold" style="font-size: 1.2rem;border-left: solid 0.1rem #fff;" th:text="${memberName}+' 님'"></label>
@@ -244,7 +247,7 @@ border-left: solid 0.1rem #fff;">Login</a>
 
 <script type="text/javascript">
 
-var init = 1
+var init = 1;
 
 function requestLogout() {
     $.ajax({
@@ -254,31 +257,46 @@ function requestLogout() {
     })
 }
 
+var mvList;
+var mvTitleList;
+var mvCodeList;
+
 $("#search").click(function() {
 
 if (init == 1){
     init = 0;
     $("#autoInput").show();
-}
-
-var mvList;
-var mvTitleList;
-var mvCodeList;
-    $.ajax({
-        type: "POST",
-        url: "/search",
-        dataType: "json",
-        async: false,
-        success: function(result){
-            mvList = result
-            mvTitleList = mvList.map(item=>item.title)
-            mvCodeList = mvList.map(item=>item.code)
-            console.log(mvTitleList);
-            console.log(mvCodeList);
-<!--            alert(mvTitleList.length)-->
-        }
-    });
+        $.ajax({
+            type: "POST",
+            url: "/search",
+            dataType: "json",
+            async: false,
+            success: function(result){
+                mvList = result
+                mvTitleList = mvList.map(item=>item.title)
+                mvCodeList = mvList.map(item=>item.code)
+<!--                console.log(mvTitleList);-->
+<!--                console.log(mvCodeList);-->
+    <!--            alert(mvTitleList.length)-->
+            }
+        });
     autocomplete.setAutocomplete(document.getElementById("autoInput"), mvTitleList, mvCodeList)
+    }
+else{
+    for (var kk = 0 ; kk < mvTitleList.length; kk++){
+        if(document.getElementById("autoInput").value == mvTitleList[kk]){
+<!--            console.log("okok");-->
+<!--            console.log("/movies/" + mvCodeList[kk].toString());-->
+            init = 1;
+            location.href="/movies/" + mvCodeList[kk].toString();
+            break;
+        }
+        if(kk + 1 == mvTitleList.length){
+<!--            console.log("일치하는 영화 없음"+ kk.toString());-->
+            alert("일치하는 영화가 없습니다.\n검색어 자동완성 기능을 이용해보세요. (^_^) ")
+        }
+    }
+}
 });
 
 let autocomplete = (function () {
@@ -341,8 +359,8 @@ let autocomplete = (function () {
                 // value의 값 만큼 굵게 표시
                 b.innerHTML = "<strong>" + _arr[i].substr(0, val.length) + "</strong>";
                 b.innerHTML += _arr[i].substr(val.length);
-                tmp = _arr_code[i].toString();
-                b.innerHTML += "<input type='hidden' value='" + tmp + "'>";
+
+                b.innerHTML += "<input type='hidden' value='" + _arr[i] + "'>";
 
                 // console.log(b);
                 // <div class="autocomplete-active"><strong>B</strong>adger<input type="hidden" value="Badger"></div>
@@ -351,7 +369,6 @@ let autocomplete = (function () {
                 b.addEventListener("click", function (e) {
                     _inp.value = this.getElementsByTagName("input")[0].value;
                     closeAllLists();
-                    location.href="/movies/" + _inp.value;
                 });
 
                 // autocomplete 리스트를 붙이기.
