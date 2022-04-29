@@ -48,7 +48,7 @@ public class MovieApiController {
     }
 
     @PostMapping("/search")
-    public ResponseEntity getMovieList() {
+    public String getMovieList() {
         List<HotMovie> result = movieService.findMovieList();
 
         JsonArray movieList = new JsonArray();
@@ -58,8 +58,8 @@ public class MovieApiController {
             jObj.addProperty("code", result.get(i).getCode());
             movieList.add(jObj);
         }
-        log.info(movieList.toString());
-        return ResponseEntity.status(HttpStatus.OK).body(movieList.toString());
+//        log.info(movieList.toString());
+        return movieList.toString();
     }
 }
 

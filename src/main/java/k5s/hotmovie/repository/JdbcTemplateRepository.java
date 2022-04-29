@@ -16,27 +16,27 @@ public class JdbcTemplateRepository implements MovieRepository{
 
     @Override
     public List<HotMovie> findByCode(Long code) {
-        return jdbcTemplate.query("select * from mv_table where code = ?", memberRowMapper(), code);
+        return jdbcTemplate.query("select * from mv_table where code = ?", movieRowMapper(), code);
     }
     @Override
     public List<HotMovie> findMovieList() {
-        return jdbcTemplate.query("select title, code from mv_table", memberRowMapper());
+        return jdbcTemplate.query("select title, code from mv_table", movieListRowMapper());
     }
 
     @Override
     public List<HotMovie> findAll() {
-        return jdbcTemplate.query("select * from mv_table", memberRowMapper());
+        return jdbcTemplate.query("select * from mv_table", movieRowMapper());
     }
 
     @Override
     public List<HotMovie> findRecentUpdate() {
-        return jdbcTemplate.query("select * from mv_table ORDER BY code DESC LIMIT 5", memberRowMapper());
+        return jdbcTemplate.query("select * from mv_table ORDER BY code DESC LIMIT 5", movieRowMapper());
     }
 
     @Override
     public List<HotMovie> findWithPage(int page) {
         int row = 12 * (page - 1);
-        return jdbcTemplate.query("select * from mv_table LIMIT 12 OFFSET ?", memberRowMapper(), row);
+        return jdbcTemplate.query("select * from mv_table LIMIT 12 OFFSET ?", movieRowMapper(), row);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class JdbcTemplateRepository implements MovieRepository{
         jdbcTemplate.update("update mv_table set score = ? where code = ?",score, code);
     }
 
-    private RowMapper<HotMovie> memberRowMapper() {
+    private RowMapper<HotMovie> movieRowMapper() {
         return (rs, rowNum) -> {
             HotMovie movie = new HotMovie();
             movie.setCode(rs.getLong("code"));
@@ -59,6 +59,15 @@ public class JdbcTemplateRepository implements MovieRepository{
             movie.setOpening_date(rs.getString("opening_date"));
             movie.setRunning_time(rs.getString("running_time"));
             movie.setImg(rs.getString("img"));
+            return movie;
+        };
+    }
+
+    private RowMapper<HotMovie> movieListRowMapper() {
+        return (rs, rowNum) -> {
+            HotMovie movie = new HotMovie();
+            movie.setCode(rs.getLong("code"));
+            movie.setTitle(rs.getString("title"));
             return movie;
         };
     }
