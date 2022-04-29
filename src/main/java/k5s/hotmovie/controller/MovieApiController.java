@@ -58,7 +58,7 @@ public class MovieApiController {
             jObj.addProperty("code", result.get(i).getCode());
             movieList.add(jObj);
         }
-//        log.info(movieList.toString());
+//        log.info(movieList.toString().replaceAll("\"title\"", "title").replaceAll("\"code\"","code"));
         return movieList.toString();
     }
 }
